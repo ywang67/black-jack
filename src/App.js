@@ -14,6 +14,7 @@ class App extends React.Component {
       customer: {},
       dealer: {},
       result: '',
+      resNumber: [],
     };
 
     this.hitCard = this.hitCard.bind(this);
@@ -21,6 +22,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.drwaUnique(4);
     axios.get(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`)
       .then(res => {
         this.setState({
@@ -45,11 +47,8 @@ class App extends React.Component {
     const promise = new Promise((success) => {
       axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deck_id}/draw/?count=1`)
         .then(res => {
-          console.log('api response: ', res)
           const temp = { ...original };
-          console.log('original: ', temp);
           temp[Object.keys(temp).length] = res.data.cards[0];
-          console.log('after: ', temp);
 
           if (val) {
             this.setState({
@@ -69,32 +68,23 @@ class App extends React.Component {
     return promise;
   }
 
-  drwaUnique(n) {
-    let i = 0;
-    const resArr = [];
-    axios.get(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`)
-      .then(res => {
-        function drawCard() {
-          for (var i = resArr.length; i < n; i++) {
-            axios.get(`https://deckofcardsapi.com/api/deck/${res.deck_id}/draw/?count=1`)
-              .then(currRes => {
-                let isExisting = false;
-                resArr.forEach(e => {
-                  if (currRes.value === e.value) {
-                    isExisting = true;
-                  }
-                  if (isExisting) {
-                    drawCard();
-                  } else {
-                    resArr.push(currRes);
-                  }
-                })
-              })
-          }
+  async drwaUnique(n) {
+    const table = await axios.get(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`);
+    const res = [];
+    while (res.length < n) {
+      const card = await axios.get(`https://deckofcardsapi.com/api/deck/${table.data.deck_id}/draw/?count=1`);
+      let isExisting = false;
+      res.forEach(e => {
+        if (e.data.cards[0].value = card.data.cards[0].value) {
+          isExisting = true;
         }
-        drawCard();
-        return resArr;
-      })
+      });
+      if (!isExisting) {
+        res.push(card);
+      }
+      console.log(res);
+    }
+    return res;
   }
 
   hitCard() {
@@ -142,7 +132,7 @@ class App extends React.Component {
         const tempEleven = customerSum + 11;
         const tempOneDiffer = 21 - tempOne;
         const tempElevenDiffer = 21 - tempEleven;
-        if (tempOneDiffer < tempElevenDiffer) {
+        if (Math.abs(tempOneDiffer) < Math.abs(tempElevenDiffer) || tempElevenDiffer > 0) {
           customerSum = tempOne;
         } else {
           customerSum = tempEleven;
