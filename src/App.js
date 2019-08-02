@@ -74,7 +74,7 @@ class App extends React.Component {
     const resArr = [];
     axios.get(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`)
       .then(res => {
-        function drawCard(val) {
+        function drawCard() {
           for (var i = resArr.length; i < n; i++) {
             axios.get(`https://deckofcardsapi.com/api/deck/${res.deck_id}/draw/?count=1`)
               .then(currRes => {
