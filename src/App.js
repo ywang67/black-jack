@@ -71,19 +71,19 @@ class App extends React.Component {
   async drwaUnique(n) {
     const table = await axios.get(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`);
     const res = [];
-    while (res.length < n) {
+    for (var i = res.length; i < n; i++) {
       const card = await axios.get(`https://deckofcardsapi.com/api/deck/${table.data.deck_id}/draw/?count=1`);
       let isExisting = false;
       res.forEach(e => {
-        if (e.data.cards[0].value = card.data.cards[0].value) {
+        if (e.data.cards[0].value === card.data.cards[0].value) {
           isExisting = true;
         }
       });
       if (!isExisting) {
-        res.push(card);
+        await res.push(card);
       }
-      console.log(res);
     }
+    console.log(res);
     return res;
   }
 
@@ -124,23 +124,27 @@ class App extends React.Component {
       dealer,
     } = this.state;
     let customerSum = 0;
-    Object.values(this.state.customer).forEach(card => {
+    const aceArray = Object.values(this.state.customer).filter(card => card.value === 'ACE');
+    const nonAceArr = Object.values(this.state.customer).filter(card => card.value !== 'ACE');
+    console.log(aceArray);
+    nonAceArr.forEach(card => {
       if (card.value === 'JACK' || card.value === 'QUEEN' || card.value === 'KING') {
         customerSum += 10;
-      } else if (card.value === 'ACE') {
-        const tempOne = customerSum + 1;
-        const tempEleven = customerSum + 11;
-        const tempOneDiffer = 21 - tempOne;
-        const tempElevenDiffer = 21 - tempEleven;
-        if (Math.abs(tempOneDiffer) < Math.abs(tempElevenDiffer) || tempElevenDiffer > 0) {
-          customerSum = tempOne;
-        } else {
-          customerSum = tempEleven;
-        }
       } else {
         customerSum += Number(card.value);
       }
     });
+    aceArray.forEach(card => {
+      const tempOne = customerSum + 1;
+      const tempEleven = customerSum + 11;
+      const tempOneDiffer = 21 - tempOne;
+      const tempElevenDiffer = 21 - tempEleven;
+      if (Math.abs(tempOneDiffer) < Math.abs(tempElevenDiffer) || tempElevenDiffer < 0) {
+        customerSum = tempOne;
+      } else {
+        customerSum = tempEleven;
+      }
+    })
     return (
       <div className={`${baseCls}`}>
         <div className={`${baseCls}__header`}>Hello, customer, black jack here!</div>
