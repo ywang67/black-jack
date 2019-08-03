@@ -71,7 +71,7 @@ class App extends React.Component {
   async drwaUnique(n) {
     const table = await axios.get(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`);
     const res = [];
-    for (var i = res.length; i < n; i++) {
+    while (res.length < n) {
       const card = await axios.get(`https://deckofcardsapi.com/api/deck/${table.data.deck_id}/draw/?count=1`);
       let isExisting = false;
       res.forEach(e => {
@@ -126,7 +126,6 @@ class App extends React.Component {
     let customerSum = 0;
     const aceArray = Object.values(this.state.customer).filter(card => card.value === 'ACE');
     const nonAceArr = Object.values(this.state.customer).filter(card => card.value !== 'ACE');
-    console.log(aceArray);
     nonAceArr.forEach(card => {
       if (card.value === 'JACK' || card.value === 'QUEEN' || card.value === 'KING') {
         customerSum += 10;
