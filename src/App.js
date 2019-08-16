@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Child from './child';
 
 import './App.css';
 
@@ -232,6 +233,7 @@ class App extends React.Component {
             </div>
             <div className={`${baseCls}__stand`}>Stand</div>
           </div>
+          <Child check={'nimabi'} />
         </div>
       </div>
     )
