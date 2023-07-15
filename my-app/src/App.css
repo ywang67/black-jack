@@ -125,15 +125,14 @@
   width: 320px;
 }
 
-.show-game__container {
-  cursor: pointer;
-  padding: 4px 8px;
-  color: #fff;
-  background-color: aqua;
+.home_show_card {
+  background-color: aquamarine;
   border-radius: 6px;
-  width: 150px;
+  cursor: pointer;
+  margin: 12px 24px;
+  padding: 2px 4px;
   text-align: center;
-  margin: 12px 0;
+  width: 240px;
 }
 
 
