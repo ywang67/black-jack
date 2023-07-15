@@ -147,7 +147,7 @@ const App = () => {
               >
                 <img
                   className={`${baseCls}__card-img`}
-                  src={(card.hidden && !winner) ? cardCoverImage: card.image}
+                  src={(card.hidden && !winner && isDealer) ? cardCoverImage: card.image}
                 />
               </div>
             );
