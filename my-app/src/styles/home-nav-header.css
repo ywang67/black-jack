@@ -1,0 +1,26 @@
+.home-nav-header {
+    background-color: #333;
+    padding: 10px;
+  }
+  
+  .home-nav-header__list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .home-nav-header__item {
+    margin-right: 10px;
+  }
+  
+  .home-nav-header__link {
+    /* color: #fff; */
+    text-decoration: none;
+    padding: 5px;
+  }
+  
+  .home-nav-header__link:hover {
+    background-color: #555;
+  }
+  
