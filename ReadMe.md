@@ -6,7 +6,8 @@
 # Docker image creation
 1. cd to BLACK-JACK, run docker build -t <your_aws_accountId>.dkr.ecr.us-east-1.amazonaws.com/<ecr-repo-name>:<tag-id> .
 2. run docker image in local: docker run -t -i -p <EXPOSE PORT(Dockerfile)>:<EXPOSE PORT(Dockerfile)> <your_aws_accountId>.dkr.ecr.us-east-1.amazonaws.com/<ecr-repo-name>:<tag-id>
-3. docker push <your_aws_accountId>.dkr.ecr.us-east-1.amazonaws.com/<ecr-repo-name>:<tag-id>
+3. aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <your_aws_accountId>.dkr.ecr.us-east-1.amazonaws.com
+4. docker push <your_aws_accountId>.dkr.ecr.us-east-1.amazonaws.com/<ecr-repo-name>:<tag-id>
 
 # Docker cmds help for development
 1. docker images: show all images
