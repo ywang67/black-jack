@@ -23,6 +23,120 @@
   color: #61dafb;
 }
 
+
+.home {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 24px 12px;
+  width: 100vw;
+}
+
+.home__header {
+  display: flex;
+  font-size: 36px;
+  justify-content: center;
+}
+
+.home__customer-options {
+  display: flex;
+}
+
+.home__button_group {
+  display: flex;
+  justify-content: space-around;
+  margin: 16px 0;
+  width: 500px;
+}
+
+.home__button_hit {
+  background-color: #61dafb;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 2px 4px;
+  text-align: center;
+  width: 120px;
+}
+
+.home__button_stand {
+  background-color: aquamarine;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 2px 4px;
+  text-align: center;
+  width: 120px;
+}
+
+.home__cards_table {
+  background-color: forestgreen;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  padding: 24px;
+  margin: 24px;
+  border-radius: 6px;
+}
+
+.home__render-cards {
+  display: flex;
+}
+
+.home__card {
+  padding: 4px 2px;
+}
+
+.home__card-img {
+  width: 235px;
+  height: 312px;
+}
+
+.home__result {
+  background-color: aqua;
+  color: #464646;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  opacity: .2;
+  position: absolute;
+  width: 100vw;
+}
+
+.home__winner {
+  align-items: center;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: bold;
+  height: 100vh;
+  opacity: 0.5;
+  position: fixed;
+  width: 100vw;
+}
+
+.home__one_more {
+  display: flex;
+  justify-content: center;
+  background-color: #61dafb;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 2px 4px;
+  width: 320px;
+}
+
+.show-game__container {
+  cursor: pointer;
+  padding: 4px 8px;
+  color: #fff;
+  background-color: aqua;
+  border-radius: 6px;
+  width: 150px;
+  text-align: center;
+  margin: 12px 0;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

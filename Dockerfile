@@ -1,7 +1,7 @@
 FROM node:10 AS ui-build
 WORKDIR /usr/src/app
 COPY my-app/ ./my-app/
-RUN cd my-app && yarn build
+RUN cd my-app && yarn install && yarn build
 
 FROM node:10 AS server-build
 WORKDIR /root/
