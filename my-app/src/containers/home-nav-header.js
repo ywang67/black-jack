@@ -52,8 +52,8 @@ const NavigationHeader = () => {
               </MenuItem>
               <MenuItem onClick={handleMenuClose}>
                 {" "}
-                <Link to="/contact" className={`${baseCls}__link`}>
-                  Contact
+                <Link to="/black-jack" className={`${baseCls}__link`}>
+                  BlackJack
                 </Link>
               </MenuItem>
             </Menu>
