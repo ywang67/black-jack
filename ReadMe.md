@@ -13,6 +13,9 @@
 1. docker images: show all images
 2. docker system prune -a: remove all images created in local docker
 
+# ECR REPO creation
+1. aws ecr create-repository --repository-name <your-name> --region <your-region>
+
 # EKS Cluster creation
 1. eksctl create cluster -f eks-cluster.yaml
 2. kubectl get svc
